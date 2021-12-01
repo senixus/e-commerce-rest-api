@@ -11,6 +11,7 @@ const create = async (req, res) => {
   const isExistingCategory = await CategoryModel.findOne({
     categoryName: req.body.categoryName,
   });
+
   if (isExistingCategory) {
     res
       .status(httpStatus.CONFLICT)
