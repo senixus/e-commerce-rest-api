@@ -1,0 +1,4 @@
+{"level":"info","message":"Category kaydediliyor","service":"user-service"}
+{"level":"info","message":{"_id":"61a8c3c69249ba82ef330fe8","categoryDescription":"category description","categoryName":"test category","createdAt":"2021-12-02T13:01:58.152Z","updatedAt":"2021-12-02T13:01:58.152Z"},"service":"user-service"}
+{"level":"info","message":"Category kaydediliyor","service":"user-service"}
+{"level":"info","message":{"_id":"61a8c43770dd366eaa385711","categoryDescription":"category description","categoryName":"test catesgory","createdAt":"2021-12-02T13:03:51.712Z","updatedAt":"2021-12-02T13:03:51.712Z"},"service":"user-service"}
