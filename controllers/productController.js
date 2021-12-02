@@ -11,11 +11,11 @@ const create = async (req, res) => {
   const isExistingProduct = await ProductModel.findOne({
     productName: req.body.productName,
   });
+
   if (isExistingProduct) {
-    res
+    return res
       .status(httpStatus.CONFLICT)
       .json({ success: false, message: "Product already exists" });
-    return;
   }
 
   const product = await ProductService.create(req.body);
@@ -27,8 +27,7 @@ const update = async (req, res) => {
 
   if (isExistingProduct) {
     const product = await ProductService.update(req.params.id, req.body);
-    res.status(httpStatus.OK).json({ success: true, data: product });
-    return;
+    return res.status(httpStatus.OK).json({ success: true, data: product });
   }
 
   res
@@ -41,8 +40,7 @@ const remove = async (req, res) => {
 
   if (isExistingProduct) {
     const product = await ProductService.remove(req.params.id);
-    res.status(httpStatus.OK).json({ success: true, data: product });
-    return;
+    return res.status(httpStatus.OK).json({ success: true, data: product });
   }
 
   res

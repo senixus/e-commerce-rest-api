@@ -6,6 +6,7 @@ const config = require("./config");
 
 const categoryRoutes = require("./routes/categoryRoutes");
 const productRoutes = require("./routes/productRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 const port = process.env.PORT || 3001;
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
+app.use("/api/user", userRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/products", productRoutes);
 

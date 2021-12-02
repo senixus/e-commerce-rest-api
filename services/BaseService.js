@@ -1,5 +1,3 @@
-
-
 class BaseService {
   getAll() {
     return this.model.find();
