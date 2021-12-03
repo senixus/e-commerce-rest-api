@@ -34,6 +34,7 @@ const verifyToken = (req, res, next) => {
       }
 
       req.user = decoded;
+
       next();
     });
   } else {
@@ -48,6 +49,7 @@ const setToken = (user) => {
   const payload = {
     id: user._id,
     name: user.firstName,
+    isAdmin: user.isAdmin,
   };
   const token = jwt.sign(payload, process.env.SECRET, {
     expiresIn: "1h",
