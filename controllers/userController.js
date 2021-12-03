@@ -3,6 +3,7 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const { setToken } = require("../middlewares/auth");
 const httpStatus = require("http-status");
+const transporter = require("../helpers/mail");
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -37,6 +38,7 @@ const login = async (req, res) => {
 const register = async (req, res) => {
   const { email } = req.body;
   const user = await User.findOne({ email });
+
   if (user) {
     return res.status(httpStatus.BAD_REQUEST).json({
       success: false,
@@ -45,6 +47,17 @@ const register = async (req, res) => {
   }
 
   await UserService.create(req.body);
+
+  // ! Email is going to throw an error
+  // const info = await transporter.sendMail({
+  //   from: process.env.SMTP_EMAIL,
+  //   to: email,
+  //   subject: "Welcome to E-commerce",
+  //   html: `<h1>Welcome to E-commerce</h1>
+  //   <p>You have successfully registered to our website</p>`,
+  // });
+
+  // console.log(info.messageId);
 
   res.status(httpStatus.OK).json({
     success: true,

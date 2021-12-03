@@ -30,7 +30,10 @@ const UserSchema = new Schema(
       trim: true,
       select: false,
     },
-
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
     resetPasswordToken: {
       type: String,
       select: false,

@@ -66,9 +66,20 @@ const sendToken = (user, res, status) => {
   });
 };
 
+const checkIsAdmin = (req, res, next) => {
+  if (!req.user.isAdmin) {
+    return res.status(httpStatus.UNAUTHORIZED).json({
+      success: false,
+      message: "Unauthorized",
+    });
+  }
+  next();
+};
+
 module.exports = {
   verifyToken,
   getToken,
   setToken,
   sendToken,
+  checkIsAdmin,
 };
