@@ -7,7 +7,7 @@ const {
   getAll,
 } = require("../controllers/categoryController");
 const validate = require("../middlewares/validate");
-const schema = require("../validations/Categories");
+const schema = require("../validations/category");
 
 router.get("/", getAll);
 router.post("/add", validate(schema.createValidation), create);

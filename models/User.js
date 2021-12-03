@@ -6,34 +6,28 @@ const UserSchema = new Schema(
   {
     firstName: {
       type: String,
-      required: [true, "Please provide a first name"],
+      required: true,
       trim: true,
-      minlength: 2,
-      maxlength: 20,
     },
     lastName: {
       type: String,
-      required: [true, "Please provide a last name"],
+      required: true,
       trim: true,
-      minlength: 2,
-      maxlength: 20,
     },
     email: {
       type: String,
-      required: [true, "Email is required"],
+      required: true,
       trim: true,
       unique: true,
-      match: [
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        "Please provide a valid email",
-      ],
+      // match: [
+      //   /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      //   "Please provide a valid email",
+      // ],
     },
     password: {
       type: String,
-      required: [true, "Password is required"],
+      required: true,
       trim: true,
-      minlength: [6, "Password must be at least 8 characters long"],
-      maxlength: [32, "Password must be at most 20 characters long"],
       select: false,
     },
 
