@@ -20,8 +20,8 @@ router.post(
   addCategory
 );
 router.post(
-  "/update-category",
-  [verifyToken, checkIsAdmin, validate(categorySchema.createValidation)],
+  "/update-category/:id",
+  [(verifyToken, checkIsAdmin, validate(categorySchema.createValidation))],
   updateCategory
 );
 router.post("/remove-category", [verifyToken, checkIsAdmin], removeCategory);
@@ -31,10 +31,10 @@ router.post(
   addProduct
 );
 router.post(
-  "/update-product",
+  "/update-product/:id",
   [verifyToken, checkIsAdmin, validate(productSchema.createValidation)],
   updateProduct
 );
-router.post("/remove-product", [verifyToken, checkIsAdmin], removeProduct);
+router.post("/remove-product/:id", [verifyToken, checkIsAdmin], removeProduct);
 
 module.exports = router;
