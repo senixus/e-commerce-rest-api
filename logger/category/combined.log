@@ -10,3 +10,7 @@
 {"level":"info","message":{"_id":"61ab49f7dc4e008ad4bc8d40","categoryDescription":"Deneme 12345","categoryName":"Deneme 2","createdAt":"2021-12-04T10:59:03.932Z","updatedAt":"2021-12-04T10:59:03.932Z"},"service":"user-service"}
 {"level":"info","message":"Category kaydediliyor","service":"user-service"}
 {"level":"info","message":{"_id":"61ab4d256f2744a6b3ae6457","categoryDescription":"Deneme 12345","categoryName":"Deneme 3","createdAt":"2021-12-04T11:12:37.330Z","updatedAt":"2021-12-04T11:12:37.330Z"},"service":"user-service"}
+{"level":"info","message":"Category kaydediliyor","service":"user-service"}
+{"level":"info","message":{"_id":"61abbbef535f1d79a7d1e6d0","categoryDescription":"Elektronik ürün","categoryName":"Elektronik","createdAt":"2021-12-04T19:05:19.968Z","product":[],"updatedAt":"2021-12-04T19:05:19.968Z"},"service":"user-service"}
+{"level":"info","message":"Category kaydediliyor","service":"user-service"}
+{"level":"info","message":{"_id":"61abbcf935ed7eb4feae3236","categoryDescription":"Elektronik categ","categoryName":"Telefon","createdAt":"2021-12-04T19:09:45.271Z","product":[],"updatedAt":"2021-12-04T19:09:45.271Z"},"service":"user-service"}

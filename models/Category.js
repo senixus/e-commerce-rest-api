@@ -16,10 +16,12 @@ const CategorySchema = new Schema(
       trim: true,
     },
 
-    // product: {
-    //   type: mongoose.Schema.ObjectId,
-    //   ref: "Product",
-    // },
+    // product: [
+    //   {
+    //     type: mongoose.Schema.ObjectId,
+    //     ref: "Product",
+    //   },
+    // ],
   },
   { versionKey: false, timestamps: true }
 );

@@ -28,12 +28,13 @@ const ProductSchema = new Schema(
     //     required: [true, "Product image is required"],
     //     trim: true,
     //   },
-    // productCategory: [
-    //   {
-    //     type: mongoose.Schema.ObjectId,
-    //     ref: "Category",
-    //   },
-    // ],
+    category: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Category",
+        required: true,
+      },
+    ],
   },
   { versionKey: false, timestamps: true }
 );

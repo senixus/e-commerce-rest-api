@@ -24,8 +24,9 @@ const login = async (req, res) => {
       message: "Invalid password",
     });
   }
+
   const userData = {
-    ...user,
+    ...user._doc,
     access_token: setToken(user),
   };
 

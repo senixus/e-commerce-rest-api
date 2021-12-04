@@ -5,6 +5,7 @@ const createValidation = Joi.object({
   lastName: Joi.string().required().min(3),
   email: Joi.string().required().email(),
   password: Joi.string().required().min(6).max(32),
+  isAdmin: Joi.boolean(),
 });
 
 module.exports = {
