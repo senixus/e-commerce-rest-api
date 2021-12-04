@@ -1,4 +1,4 @@
-const UserService = require("../services/UserService");
+const userService = require("../services/UserService");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const { setToken } = require("../middlewares/auth");
@@ -47,7 +47,7 @@ const register = async (req, res) => {
     });
   }
 
-  await UserService.create(req.body);
+  await userService.create(req.body);
 
   // ! Email is going to throw an error
   // const info = await transporter.sendMail({
@@ -75,8 +75,24 @@ const logout = async (req, res) => {
   });
 };
 
+const update = async (req, res) => {
+  try {
+    await userService.update(req.params.id, req.body);
+    res.status(httpStatus.OK).json({
+      success: true,
+      message: "Updated successfully",
+    });
+  } catch (err) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      success: false,
+      message: "Error updating profile",
+    });
+  }
+};
+
 module.exports = {
   login,
   register,
   logout,
+  update,
 };
