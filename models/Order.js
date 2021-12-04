@@ -6,37 +6,35 @@ const OrderSchema = new Schema(
   {
     orderNumber: {
       type: String,
-      required: [true, "Order number is required"],
+      required: true,
       trim: true,
-    },
-    orderDate: {
-      type: Date,
-      default: Date.now,
     },
     orderStatus: {
       type: String,
-      required: [true, "Order status is required"],
-      trim: true,
+      default: "Pending",
     },
     orderTotal: {
       type: Number,
-      required: [true, "Order total is required"],
+      required: true,
       trim: true,
     },
-    //   orderCustomer: {
-    //     type: mongoose.Schema.ObjectId,
-    //     ref: "User",
-    //     required: true,
-    //   },
-    //   orderProducts: [
-    //     {
-    //       type: mongoose.Schema.ObjectId,
-    //       ref: "Product",
-    //     },
-    //   ],
+    customer: {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    products: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Product",
+        required: true,
+      },
+    ],
 
-    //   isDeleted: {},
-    //   isActive: {},
+    isCanceled: {
+      type: Boolean,
+      default: false,
+    },
   },
   { versionKey: false, timestamps: true }
 );
