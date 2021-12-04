@@ -1,20 +1,40 @@
 const httpStatus = require("http-status");
 
+const CategoryModel = require("../models/Category");
+const ProductModel = require("../models/Product");
+
 const productService = require("../services/ProductService");
 const categoryService = require("../services/CategoryService");
 
 const addProduct = async (req, res) => {
-  await productService.create(req.body);
-  res
-    .status(httpStatus.CREATED)
-    .json({ success: true, message: "Product created successfully" });
+  const isExistingProduct = await ProductModel.findOne({
+    productName: req.body.productName,
+  });
+
+  if (isExistingProduct) {
+    return res
+      .status(httpStatus.CONFLICT)
+      .json({ success: false, message: "Product already exists" });
+  }
+
+  const product = await ProductService.create(req.body);
+  res.status(httpStatus.CREATED).json({ success: true, data: product });
 };
 
 const addCategory = async (req, res) => {
-  await categoryService.create(req.body);
-  res
-    .status(httpStatus.CREATED)
-    .json({ success: true, message: "Category created successfully" });
+  const isExistingCategory = await CategoryModel.findOne({
+    categoryName: req.body.categoryName,
+  });
+
+  if (isExistingCategory) {
+    res
+      .status(httpStatus.CONFLICT)
+      .json({ success: false, message: "Category already exists" });
+    return;
+  }
+
+  const category = await CategoryService.create(req.body);
+  res.status(httpStatus.CREATED).json({ success: true, data: category });
 };
 
 const updateProduct = async (req, res) => {
