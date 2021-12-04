@@ -33,7 +33,10 @@ const verifyToken = (req, res, next) => {
         });
       }
 
-      req.user = decoded;
+      req.user = {
+        ...decoded,
+        access_token: token,
+      };
 
       next();
     });

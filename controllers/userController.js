@@ -65,7 +65,17 @@ const register = async (req, res) => {
   });
 };
 
+const logout = async (req, res) => {
+  req.user = null;
+
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "User logged out successfully",
+  });
+};
+
 module.exports = {
   login,
   register,
+  logout,
 };

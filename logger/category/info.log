@@ -4,3 +4,9 @@
 {"level":"info","message":{"_id":"61a8c43770dd366eaa385711","categoryDescription":"category description","categoryName":"test catesgory","createdAt":"2021-12-02T13:03:51.712Z","updatedAt":"2021-12-02T13:03:51.712Z"},"service":"user-service"}
 {"level":"info","message":"Category kaydediliyor","service":"user-service"}
 {"level":"info","message":{"_id":"61aa7d0e32a83aa2b77bc03f","categoryDescription":"Test kategori","categoryName":"Test kategori 1","createdAt":"2021-12-03T20:24:46.406Z","updatedAt":"2021-12-03T20:24:46.406Z"},"service":"user-service"}
+{"level":"info","message":"Category kaydediliyor","service":"user-service"}
+{"level":"info","message":{"_id":"61ab49d417d2dc96c8da6ee4","categoryDescription":"Deneme 12345","categoryName":"Deneme 1","createdAt":"2021-12-04T10:58:28.586Z","updatedAt":"2021-12-04T10:58:28.586Z"},"service":"user-service"}
+{"level":"info","message":"Category kaydediliyor","service":"user-service"}
+{"level":"info","message":{"_id":"61ab49f7dc4e008ad4bc8d40","categoryDescription":"Deneme 12345","categoryName":"Deneme 2","createdAt":"2021-12-04T10:59:03.932Z","updatedAt":"2021-12-04T10:59:03.932Z"},"service":"user-service"}
+{"level":"info","message":"Category kaydediliyor","service":"user-service"}
+{"level":"info","message":{"_id":"61ab4d256f2744a6b3ae6457","categoryDescription":"Deneme 12345","categoryName":"Deneme 3","createdAt":"2021-12-04T11:12:37.330Z","updatedAt":"2021-12-04T11:12:37.330Z"},"service":"user-service"}
