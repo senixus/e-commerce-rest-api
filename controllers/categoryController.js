@@ -13,7 +13,9 @@ const getById = async (req, res) => {
     if (category._id) {
       return res.status(httpStatus.OK).json({ success: true, data: category });
     }
-    res.status(httpStatus.NOT_FOUND);
+    res
+      .status(httpStatus.NOT_FOUND)
+      .json({ success: false, message: "Category not found" });
   } catch (err) {
     res
       .status(httpStatus.NOT_FOUND)

@@ -77,10 +77,11 @@ const logout = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    await userService.update(req.params.id, req.body);
+    const userData = await userService.update(req.params.id, req.body);
+
     res.status(httpStatus.OK).json({
       success: true,
-      message: "Updated successfully",
+      data: userData,
     });
   } catch (err) {
     res.status(httpStatus.BAD_REQUEST).json({
@@ -90,9 +91,32 @@ const update = async (req, res) => {
   }
 };
 
+const getById = async (req, res) => {
+  try {
+    const user = await userService.getById(req.params.id);
+
+    if (user._id) {
+      return res.status(httpStatus.OK).json({
+        success: true,
+        data: user,
+      });
+    }
+    res.status(httpStatus.BAD_REQUEST).json({
+      success: false,
+      message: "Error getting user",
+    });
+  } catch (err) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      success: false,
+      message: "Error getting user",
+    });
+  }
+};
+
 module.exports = {
   login,
   register,
   logout,
   update,
+  getById,
 };

@@ -8,9 +8,11 @@ const {
   register,
   logout,
   update,
+  getById,
 } = require("../controllers/userController");
 
 router.post("/login", login);
+router.get("/:id", verifyToken, getById);
 router.post("/register", validate(schema.createValidation), register);
 router.post("/logout", verifyToken, logout);
 router.post("/update/:id", verifyToken, update);
