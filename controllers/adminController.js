@@ -5,6 +5,7 @@ const ProductModel = require("../models/Product");
 
 const productService = require("../services/ProductService");
 const categoryService = require("../services/CategoryService");
+const orderService = require("../services/OrderService");
 
 const addProduct = async (req, res) => {
   const isExistingProduct = await ProductModel.findOne({
@@ -93,6 +94,23 @@ const removeCategory = async (req, res) => {
   }
 };
 
+const getAllOrders = async (req, res) => {
+  try {
+    const orders = await orderService.find();
+    if (orders) {
+      return res.status(httpStatus.OK).json({ success: true, data: orders });
+    }
+    res
+      .status(httpStatus.NOT_FOUND)
+      .json({ success: false, message: "No orders found" });
+  } catch (err) {
+    return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: "Error while fetching orders",
+    });
+  }
+};
+
 module.exports = {
   addProduct,
   addCategory,
@@ -100,4 +118,5 @@ module.exports = {
   updateCategory,
   removeProduct,
   removeCategory,
+  getAllOrders,
 };

@@ -41,6 +41,12 @@ const UserSchema = new Schema(
     resetPasswordExpire: {
       type: Date,
     },
+    order: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Order",
+      },
+    ],
   },
   { versionKey: false, timestamps: true }
 );

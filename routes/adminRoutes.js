@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const {
+  getAllOrders,
   addCategory,
   addProduct,
   removeCategory,
@@ -13,6 +14,8 @@ const { checkIsAdmin, verifyToken } = require("../middlewares/auth");
 const validate = require("../middlewares/validate");
 const productSchema = require("../validations/product");
 const categorySchema = require("../validations/category");
+
+router.get("/orders", [verifyToken, checkIsAdmin], getAllOrders);
 
 router.post(
   "/add-category",

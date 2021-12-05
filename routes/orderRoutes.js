@@ -1,10 +1,19 @@
 const express = require("express");
 const router = express.Router();
 
-const { checkIsAdmin, verifyToken } = require("../middlewares/auth");
+const {
+  cancel,
+  create,
+  getById,
+  getByUserId,
+} = require("../controllers/orderController");
 
-router.post("/add", (req, res) => {});
-router.post("/update", (req, res) => {});
-router.post("/delete", (req, res) => {});
+const { verifyToken } = require("../middlewares/auth");
+
+router.get("/", verifyToken, getByUserId);
+router.post("/add", verifyToken, create);
+router.post("/update/:id", verifyToken, (req, res) => {});
+router.post("/cancel/:id", verifyToken, cancel);
+router.get("/:id", verifyToken, getById);
 
 module.exports = router;

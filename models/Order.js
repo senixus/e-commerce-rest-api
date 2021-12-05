@@ -4,21 +4,21 @@ const crypto = require("crypto");
 
 const OrderSchema = new Schema(
   {
-    orderNumber: {
+    no: {
       type: String,
       required: true,
       trim: true,
     },
-    orderStatus: {
+    status: {
       type: String,
       default: "Pending",
     },
-    orderTotal: {
+    totalPrice: {
       type: Number,
       required: true,
       trim: true,
     },
-    customer: {
+    user: {
       type: mongoose.Schema.ObjectId,
       ref: "User",
       required: true,
