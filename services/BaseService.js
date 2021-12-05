@@ -12,6 +12,10 @@ class BaseService {
   remove(id) {
     return this.model.findByIdAndDelete(id);
   }
+
+  getById(id) {
+    return this.model.findById(id);
+  }
 }
 
 module.exports = BaseService;
