@@ -9,7 +9,7 @@ const create = async (req, res) => {
       .json({ success: true, message: "Order created successfully" });
   } catch (err) {
     res
-      .status(500)
+      .status(httpStatus.INTERNAL_SERVER_ERROR)
       .json({ success: false, message: "Error occured while creating order" });
   }
 };
@@ -26,7 +26,7 @@ const getById = async (req, res) => {
       .json({ success: false, message: "Order not found" });
   } catch (err) {
     res
-      .status(httpStatus.NOT_FOUND)
+      .status(httpStatus.INTERNAL_SERVER_ERROR)
       .json({ success: false, message: "Error occured while getting order" });
   }
 };
@@ -51,7 +51,7 @@ const cancel = async (req, res) => {
       .json({ success: false, message: "Order not found" });
   } catch (err) {
     res
-      .status(httpStatus.NOT_FOUND)
+      .status(httpStatus.INTERNAL_SERVER_ERROR)
       .json({ success: false, message: "Error occured while canceling order" });
   }
 };

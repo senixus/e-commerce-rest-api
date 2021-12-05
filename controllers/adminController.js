@@ -111,6 +111,21 @@ const getAllOrders = async (req, res) => {
   }
 };
 
+const updateOrder = async (req, res) => {
+  try {
+    await orderService.update(req.params.id, req.body);
+
+    res
+      .status(httpStatus.OK)
+      .json({ success: true, message: "Order updated successfully" });
+  } catch (err) {
+    return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: "Error while updating order",
+    });
+  }
+};
+
 module.exports = {
   addProduct,
   addCategory,
@@ -119,4 +134,5 @@ module.exports = {
   removeProduct,
   removeCategory,
   getAllOrders,
+  updateOrder,
 };

@@ -8,6 +8,7 @@ const {
   removeProduct,
   updateCategory,
   updateProduct,
+  updateOrder,
 } = require("../controllers/adminController");
 
 const { checkIsAdmin, verifyToken } = require("../middlewares/auth");
@@ -16,6 +17,8 @@ const productSchema = require("../validations/product");
 const categorySchema = require("../validations/category");
 
 router.get("/orders", [verifyToken, checkIsAdmin], getAllOrders);
+
+router.post("/update-order/:id", [verifyToken, checkIsAdmin], updateOrder);
 
 router.post(
   "/add-category",
