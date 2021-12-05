@@ -23,11 +23,6 @@ const ProductSchema = new Schema(
       required: true,
       trim: true,
     },
-    //   productImage: {
-    //     type: String,
-    //     required: [true, "Product image is required"],
-    //     trim: true,
-    //   },
     category: [
       {
         type: mongoose.Schema.ObjectId,

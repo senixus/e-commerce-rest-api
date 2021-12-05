@@ -22,7 +22,29 @@ const getById = async (req, res) => {
   }
 };
 
+const getProductsByCategory = async (req, res) => {
+  try {
+    const products = await productService.getAll();
+    const categoryProducts = products.filter((product) =>
+      product.category.includes(req.params.id)
+    );
+    if (categoryProducts.length) {
+      return res
+        .status(httpStatus.OK)
+        .json({ success: true, data: categoryProducts });
+    }
+    res
+      .status(httpStatus.NOT_FOUND)
+      .json({ success: false, message: "Products not found" });
+  } catch (err) {
+    res
+      .status(httpStatus.INTERNAL_SERVER_ERROR)
+      .json({ success: false, message: "Internal server error" });
+  }
+};
+
 module.exports = {
   getAll,
   getById,
+  getProductsByCategory,
 };

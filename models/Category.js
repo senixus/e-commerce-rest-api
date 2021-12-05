@@ -15,13 +15,6 @@ const CategorySchema = new Schema(
       required: true,
       trim: true,
     },
-
-    // product: [
-    //   {
-    //     type: mongoose.Schema.ObjectId,
-    //     ref: "Product",
-    //   },
-    // ],
   },
   { versionKey: false, timestamps: true }
 );
