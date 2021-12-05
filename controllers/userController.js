@@ -133,7 +133,6 @@ const forgotPassword = async (req, res) => {
   const emailTemplate = `
       <h3>Reset Your Password</h3>
       <p>This <a href = '${resetPasswordUrl}' target = '_blank'>link</a>  will expire in 1 hour</p>
-
   `;
 
   try {
