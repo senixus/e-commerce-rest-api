@@ -10,12 +10,11 @@ const getById = async (req, res) => {
   try {
     const product = await productService.getById(req.params.id);
     if (product._id) {
-      res.status(httpStatus.OK).json({ success: true, data: product });
-    } else {
-      res
-        .status(httpStatus.NOT_FOUND)
-        .json({ success: false, message: "Product not found" });
+      return res.status(httpStatus.OK).json({ success: true, data: product });
     }
+    res
+      .status(httpStatus.NOT_FOUND)
+      .json({ success: false, message: "Product not found" });
   } catch (err) {
     res
       .status(httpStatus.NOT_FOUND)
