@@ -9,13 +9,16 @@ const {
   logout,
   update,
   getById,
+  forgotPassword,
+  resetPassword,
 } = require("../controllers/userController");
 
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password", resetPassword);
 router.post("/login", login);
 router.get("/:id", verifyToken, getById);
 router.post("/register", validate(schema.createValidation), register);
 router.post("/logout", verifyToken, logout);
 router.post("/update/:id", verifyToken, update);
-router.post("/forgot-password", (req, res) => {});
 
 module.exports = router;

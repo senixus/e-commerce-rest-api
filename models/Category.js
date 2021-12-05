@@ -19,7 +19,6 @@ const CategorySchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-// Category kaydetme işlemi öncesi
 CategorySchema.pre("save", function (next) {
   logger.log({
     level: "info",
@@ -28,7 +27,6 @@ CategorySchema.pre("save", function (next) {
   next();
 });
 
-// Category kaydetme işlemi sonrası
 CategorySchema.post("save", function (doc, next) {
   logger.log({
     level: "info",

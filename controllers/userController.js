@@ -1,9 +1,10 @@
 const userService = require("../services/UserService");
 const User = require("../models/User");
-const bcrypt = require("bcryptjs");
 const { setToken } = require("../middlewares/auth");
-const httpStatus = require("http-status");
 const transporter = require("../helpers/mail");
+
+const bcrypt = require("bcryptjs");
+const httpStatus = require("http-status");
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -113,10 +114,89 @@ const getById = async (req, res) => {
   }
 };
 
+const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+
+  const resetPasswordToken = user.getResetPasswordToken();
+
+  await user.save();
+
+  if (!user) {
+    return res.status(httpStatus.BAD_REQUEST).json({
+      success: false,
+      message: "User not found",
+    });
+  }
+  const resetPasswordUrl = `http://localhost:3001/api/user/resetPassword?resetPasswordToken=${resetPasswordToken}`;
+
+  const emailTemplate = `
+      <h3>Reset Your Password</h3>
+      <p>This <a href = '${resetPasswordUrl}' target = '_blank'>link</a>  will expire in 1 hour</p>
+
+  `;
+
+  try {
+    await transporter.sendMail({
+      from: process.env.SMTP_EMAIL,
+      to: email,
+      subject: "Reset Password Token",
+      html: emailTemplate,
+    });
+    return res.status(httpStatus.OK).json({
+      success: true,
+      message: "Email Sent",
+    });
+  } catch (err) {
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save();
+    res
+      .status(httpStatus.INTERNAL_SERVER_ERROR)
+      .json({ success: false, message: "Error sending email" });
+  }
+};
+
+const resetPassword = async (req, res) => {
+  const { resetPasswordToken } = req.query;
+  const { password } = req.body;
+
+  if (!resetPasswordToken) {
+    return res.status(httpStatus.BAD_REQUEST).json({
+      success: false,
+      message: "Please provide a valid token",
+    });
+  }
+  let user = await User.findOne({
+    resetPasswordToken,
+    resetPasswordExpire: { $gt: Date.now() },
+  });
+
+  if (!user) {
+    return res.status(httpStatus.BAD_REQUEST).json({
+      success: false,
+      message: "Invalid token or Session Expired",
+    });
+  }
+  user.password = password;
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpire = undefined;
+
+  await user.save();
+
+  res.status(httpStatus.OK).json({
+    success: true,
+    message: "Password reset successfully",
+  });
+};
+
 module.exports = {
   login,
   register,
   logout,
   update,
   getById,
+  forgotPassword,
+  resetPassword,
 };
