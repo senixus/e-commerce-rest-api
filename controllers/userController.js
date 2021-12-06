@@ -50,16 +50,16 @@ const register = async (req, res) => {
 
   await userService.create(req.body);
 
-  // ! Email is going to throw an error
-  // const info = await transporter.sendMail({
-  //   from: process.env.SMTP_EMAIL,
-  //   to: email,
-  //   subject: "Welcome to E-commerce",
-  //   html: `<h1>Welcome to E-commerce</h1>
-  //   <p>You have successfully registered to our website</p>`,
-  // });
 
-  // console.log(info.messageId);
+  const info = await transporter.sendMail({
+    from: process.env.SMTP_EMAIL,
+    to: email,
+    subject: "Welcome to E-commerce",
+    html: `<h1>Welcome to E-commerce</h1>
+    <p>You have successfully registered to our website</p>`,
+  });
+
+
 
   res.status(httpStatus.OK).json({
     success: true,
