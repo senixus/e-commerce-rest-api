@@ -37,4 +37,4 @@
 - `SMTP_PORT` - Email Port
 - `SMTP_EMAIL` - Email Address
 - `SMTP_PASS` - Email Password
-- `RESET_PASSWORD_EXPIRE` - 3600000 or whatever you want
+- `RESET_PASSWORD_EXPIRE` - Password expire
